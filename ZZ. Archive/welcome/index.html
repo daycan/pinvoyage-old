@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://wwww.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://wwww.w3.org/1999/xhtml" xml:lang="en">
+
+  <head>
+    <title>PinVoyage</title>
+      
+      <!--Google Analytics tracking//-->
+      <script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-34863242-1']);
+	_gaq.push(['_trackPageview']);
+      
+	(function() {
+	  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+      </script>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+  </head>
+  
+  <body>
+      <h1>PinVoyage</h1>
+      <h2>Pin your kind of places from around the world</h2>
+      
+      <hr />
+      
+      <p> PinVoyage helps you keep track of all the places you'd like to see around the world so that you can make sure to visit them all some day. Pin today, travel tomorrow. </p>
+    
+    
+    <!--Name Submission Form//-->
+    <form align="center" action="welcome1.php" method="post">
+      <div><label for="firstname">First name: </br>
+	<input type="text" name="firstname" id="firstname"/></label>
+      </div>
+      
+      </br>
+      
+      <div><label for="lastname">Last name: </br>
+	<input type="text" name="lastname" id="lastname"/></label></div>
+      
+      </br>
+      
+      <div><input type="submit" value="GO"/></div> 
+    </form>
+    
+    <!--Log in to Database//-->
+    <?php
+      require_once 'login.php';
+      $db_server = mysql_connect($db_hostname, $db_username, $db_password);
+      
+      if (!$db_server) die("Unable to connect to MySQL: " . mysql_error());
+      
+      mysql_select_db($db_database)
+	or die ("Unable to select database: " . mysql_error());
+	
+      $query = "SELECT * FROM users";
+      $result = mysql_query($query);
+     
+      if (!$result) die ("Database access failed: " . mysql_error());
+      
+      $row = mysql_num_rows(result);
+      
+      for ($j = 0; $j < $rows ; ++$j)
+      {
+	echo 'First Name: '	.mysql_result($result, $j, 'first_name')	. '<br />;
+	echo 'First Name: '	.mysql_result($result, $j, 'last_name')		. '<br />
+	echo 'First Name: '	.mysql_result($result, $j, 'phone')		. '<br />
+	echo 'First Name: '	.mysql_result($result, $j, 'email')		. '<br />)
+      }
+    ?>
+    
+    <!--Reminders of things to do after Welcome//-->
+    <p>Welcome! <br />
+      Leave your email <br />
+      Take a survey <br />
+      Give us some feedback <br />
+      Follow us <br />
+    </p>
+    
+    <hr />
+      
+    <div class="footer">Copyright &copy; 2012-2016 PinVoyage (www.PinVoyage.com). All rights reserved. Used with permission.</div>
+    
+  </body>
+</html>
