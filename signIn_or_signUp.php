@@ -2,13 +2,12 @@
 
 include_once 'assets/header.php';
 
-if (isset($_SESSION['user'])) destroySession();
+if (isset($_SESSION['user'])) {
+    destroySession();
+    echo "<script>alert('you have been logged out')</script>";
+}
 
 // Set the highlight on the site navagation items in the header
-echo "<script language='javascript'>
-document.getElementById('signIn').className = 'Active';
-</script>"; 
-
 
 echo <<<_END
 <script>
@@ -109,4 +108,10 @@ _END;
 <br />
 <span class='fieldname'>&nbsp;</span>
 <input type='submit' value='Login' />
-</form><br /></div></body></html>
+</form><br /></div>
+
+    echo "<script language='javascript'>
+        document.getElementById('signIn').className = 'Active';
+    </script>"; 
+
+</body></html>

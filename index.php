@@ -41,41 +41,44 @@ echo '<!-- Jumbotron -->
 	
   '</div>';
 
-$result = queryMysql("SELECT * FROM pins WHERE email='$email'");
-$num = mysqli_num_rows($result);
+
+if ($loggedin == TRUE){
+	$result = queryMysql("SELECT * FROM pins WHERE email='$email'");
+	$num = mysqli_num_rows($result);
 
 
-// render the users pins
+	// render the users pins
 
-for ($j = 0 ; $j < $num ; ++$j)
-{
-	$row = mysqli_fetch_row($result);
-	$imagename = 'pins/' . $row[0] . '.jpg';
-	
-	// select the correct column in which to palce the pin's image 
-	$column = $j%3;
-	
-	//OLD METHOD OF PICKING THE RIGHT COLUMN
-	echo "<script type='text/javascript'>$(\"#column_$column\").append('" . 
-			// The form which contains the photo and buttons to edit delete etc.
-		 		'<div class="thumbnail" style="position:relative;">' .
-				
-					'<img src="' . $imagename . '" alt=""></img>' .
-					'<p class="muted">' . $row[3] . "</p>" . 
-					'<form method="post" action="addpin.php" enctype="multipart/form-data">' .
-						'<input type="hidden" name="pinid" value="' . $row[0] . '">' .
-						'<input type="submit" class="btn btn-medium btn-action show_on_hover" value="Edit" style="height:32px; width:60px; ' .
-							'margin: -15px -46px; position:absolute; top:50%; left:50%;"/>' .
-					"</form>" .
-					'<form method="post" action="index.php" enctype="multipart/form-data">' .
-						'<input type="hidden" name="pinid" value="' . $row[0] . '">' .
-						'<button type="submit" action="index.php" class="btn btn-medium btn-danger show_on_hover" style="height:32px; ' .
-							'margin: -15px 20px; position:absolute; top:50%; left:50%;"><i class="icon-trash icon-white"></i></button>'. 
-					"</form>" .
+	for ($j = 0 ; $j < $num ; ++$j)
+	{
+		$row = mysqli_fetch_row($result);
+		$imagename = 'pins/' . $row[0] . '.jpg';
+		
+		// select the correct column in which to palce the pin's image 
+		$column = $j%3;
+		
+		//OLD METHOD OF PICKING THE RIGHT COLUMN
+		echo "<script type='text/javascript'>$(\"#column_$column\").append('" . 
+				// The form which contains the photo and buttons to edit delete etc.
+			 		'<div class="thumbnail" style="position:relative;">' .
 					
-				"</div>" .
-			"<br />')" .
-         "</script>";
+						'<img src="' . $imagename . '" alt=""></img>' .
+						'<p class="muted">' . $row[3] . "</p>" . 
+						'<form method="post" action="addpin.php" enctype="multipart/form-data">' .
+							'<input type="hidden" name="pinid" value="' . $row[0] . '">' .
+							'<input type="submit" class="btn btn-medium btn-action show_on_hover" value="Edit" style="height:32px; width:60px; ' .
+								'margin: -15px -46px; position:absolute; top:50%; left:50%;"/>' .
+						"</form>" .
+						'<form method="post" action="index.php" enctype="multipart/form-data">' .
+							'<input type="hidden" name="pinid" value="' . $row[0] . '">' .
+							'<button type="submit" action="index.php" class="btn btn-medium btn-danger show_on_hover" style="height:32px; ' .
+								'margin: -15px 20px; position:absolute; top:50%; left:50%;"><i class="icon-trash icon-white"></i></button>'. 
+						"</form>" .
+						
+					"</div>" .
+				"<br />')" .
+	         "</script>";
+	}
 }
 
 echo '<hr>
@@ -103,12 +106,12 @@ echo '<hr>
     <script src="../assets/js/bootstrap-carousel.js"></script>
     <script src="../assets/js/bootstrap-typeahead.js"></script>';
 	
-	// Activate the right tab NOTE: move this until after $(document).ready(function(){});
-	echo "<script language='javascript'>
+	// Activate the corrent tab NOTE: move this until after $(document).ready(function(){});
+	echo '<script language="javascript">
 	$(document).ready(function() {
-		$('#home').addClass('Active');
+		$("#home").addClass("active");
 	});
-	</script>";
+	</script>';
 	
 	
 ?>
