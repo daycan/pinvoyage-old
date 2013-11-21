@@ -7,6 +7,9 @@ if (isset($_POST['pinid'])){
 	queryMysql("DELETE FROM pins WHERE pin_id='$unique_pin_id'");
 }
 
+// Load lazyload javascript library
+echo '<script src="jquery.lazyload.js" type="text/javascript"></script>';
+
 // Restart the container -- header in header.php is in a 
 echo '<div class="container">';
 
@@ -62,7 +65,7 @@ if ($loggedin == TRUE){
 				// The form which contains the photo and buttons to edit delete etc.
 			 		'<div class="thumbnail" style="position:relative;">' .
 					
-						'<img src="' . $imagename . '" alt=""></img>' .
+						'<img class="lazy" data-original="' . $imagename . '" alt=""></img>' .
 						'<p class="muted">' . $row[3] . "</p>" . 
 						'<form method="post" action="addpin.php" enctype="multipart/form-data">' .
 							'<input type="hidden" name="pinid" value="' . $row[0] . '">' .
@@ -106,6 +109,7 @@ echo '<hr>
     <script src="../assets/js/bootstrap-carousel.js"></script>
     <script src="../assets/js/bootstrap-typeahead.js"></script>';
 	
+
 	// Activate the corrent tab NOTE: move this until after $(document).ready(function(){});
 	echo '<script language="javascript">
 	$(document).ready(function() {

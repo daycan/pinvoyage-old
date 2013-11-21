@@ -1,5 +1,12 @@
 // pinvoyage script.js
 $(document).ready(function() {
+
+  $(function() {
+      $("img.lazy").lazyload({
+        failure_limit : 10 ,
+        effect : "fadeIn"
+      });
+    });
 	
 	$('.show_on_hover').hide();
 	

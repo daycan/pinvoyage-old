@@ -15,6 +15,8 @@ else $loggedin = FALSE;
 // Load jQuery - NOTE: NOT SURE THIS IS WORKING YET
 echo '<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>';
 echo '<script type="text/javascript" src="assets/js/script.js"></script>';
+// Load lazyload javascript library
+echo '<script src="assets/js/jquery.lazyload.js" type="text/javascript"></script>';
 // Include Stamen maps JS: NOTE: THIS IS NOT WORKING
 echo '<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.3"></script>';
 
