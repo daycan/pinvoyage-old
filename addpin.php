@@ -2,6 +2,8 @@
 
 include_once 'assets/header.php';
 
+// testing Git sync
+
 if (!$loggedin) die();
 
 // Include the googlemapsfunctions javascript
