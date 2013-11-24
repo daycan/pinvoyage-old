@@ -16,8 +16,6 @@ echo '<div class="container">';
 
 echo "<div class='main'><h1>Add/Edit a Pin</h1>";
 
-$description = stripslashes(preg_replace('/\s\s+/', ' ', $description));
-
 if (isset($_POST['pinid'])){
 	$situation = 'edit_existing';
 	$unique_pin_id = sanitizeString($_POST['pinid']);
@@ -36,6 +34,9 @@ if (isset($_POST['pinid'])){
          "</div>";
 }
 else {
+	
+	$situation = 'add_new_pin';
+
 	if (isset($_POST['placetitle']))
 	{
 		$placetitle = sanitizeString($_POST['placetitle']);
