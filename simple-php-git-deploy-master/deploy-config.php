@@ -42,7 +42,7 @@ define('BRANCH', 'master');
  *
  * @var string Full path including the trailing slash
  */
-define('TARGET_DIR', 'ftp://daycan@sassafras.dreamhost.com/pinvoyage.com/');
+define('TARGET_DIR', '/pinvoyage.com/');
 
 /**
  * Weather to delete the files that are not in the repository but are on the

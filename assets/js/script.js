@@ -4,9 +4,12 @@ $(document).ready(function() {
   $(function() {
       $("img.lazy").lazyload({
         failure_limit : 10 ,
-        effect : "fadeIn"
+        effect : "fadeIn",
+        threshold : 400
       });
     });
+
+  $("#home").addClass("active");
 	
 	$('.show_on_hover').hide();
 	
@@ -21,6 +24,7 @@ $(document).ready(function() {
    $('#expand_map_button').click(function() {
 	   $('#add_pin_button').fadeOut(1000);
    });
+
 
 
 });
