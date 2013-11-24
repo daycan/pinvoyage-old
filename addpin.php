@@ -2,7 +2,7 @@
 
 include_once 'assets/header.php';
 
-// testing Git sync
+// testing testing testing git deploy
 
 if (!$loggedin) die();
 
