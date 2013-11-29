@@ -27,10 +27,10 @@ if (isset($_POST['pinid'])){
 	$description = $pinrow[3];
 	$query = "SELECT * FROM places WHERE place_id='$unique_place_id'";
 	$placerow = mysqli_fetch_row(queryMysql($query));
-	$placetitle = $placerow[1];
-	$street = $placerow[2];
-	$city = $placerow[3];
-	$country = $placerow[6];
+	$placetitle = $placerow[3];
+	$street = $placerow[4];
+	$city = $placerow[5];
+	$country = $placerow[8];
 	echo '<div class="thumbnail span12" style="position:relative;">' .
 			'<img src="pins/' . $unique_pin_id . '.jpg" alt=""></img>' .
          "</div>";
@@ -74,14 +74,14 @@ else {
 
 
 // Execute if the Save has been hit
-if (isset($_POST['saveattempt']) && ($unique_pin_id!='' || isset($_FILES['pinimage']['name']))) {
+if (isset($_POST['saveattempt'])) {
 
 	// Check if the place already exists, if not, create the place
 	$query = "SELECT place_id FROM places WHERE street='$street' AND city='$city' AND country='$country'";
-	$row = mysql_fetch_row(queryMysql($query));
+	$row = mysqli_fetch_row(queryMysql($query));
 	$unique_place_id = $row[0];
-	if (mysql_num_rows(queryMysql($query)) == 0) {
-		queryMysql("INSERT INTO places VALUES('', '$placetitle', '$street', '$city', '', '', '$country')");
+	if (mysqli_num_rows(queryMysql($query)) == 0) {
+		queryMysql("INSERT INTO places VALUES('', '', '', '$placetitle', '$street', '$city', '', '', '$country')");
 		$unique_place_id = mysql_insert_id();
 	}
 	
@@ -95,7 +95,7 @@ if (isset($_POST['saveattempt']) && ($unique_pin_id!='' || isset($_FILES['pinima
 	// if the pin does not already exist, create a new pin
 	else {
 		queryMysql("INSERT INTO pins VALUES('', '$unique_place_id', '$email', '$description', '', '')");
-		$unique_pin_id = mysql_insert_id();
+		$unique_pin_id = mysqli_insert_id($link);
 		$saveto ="pins/$unique_pin_id.jpg";
 	}
 }
